@@ -65,8 +65,8 @@
                                         </label>
 
                                         <select class="form-select" name="type" id="type">
-                                            <option value="1">Nút</option>
-                                            <option value="2">Màu</option>
+                                            <option value="1">Màu sắc</option>
+                                            <option value="2">Nút</option>
                                         </select>
                                     </div>
 

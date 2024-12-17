@@ -1,96 +1,90 @@
-@extends('admin.layouts.master')
+@extends('admin.layout.master')
 
 @section('title', 'Quản lý sản phẩm')
 
 @section('content')
-    <div class="card my-2">
-        <div class="card-body d-flex align-items-center justify-content-between">
-            <nav aria-label="breadcrumb">
-                <ol class="breadcrumb mb-0">
-                    <li class="breadcrumb-item"><a href="{{ route('admin.dashboard') }}">Dashboard</a></li>
-                    <li class="breadcrumb-item active" aria-current="page">Quản lý sản phẩm</li>
-                </ol>
-            </nav>
-        </div>
-    </div>
+    <div class="container-fluid">
+        <div class="page-header d-print-none">
+            <div class="card">
+                <div class="card-header d-flex align-items-center justify-content-between">
+                    <h3 class="card-title">
+                        Quản lý sản phẩm
+                    </h3>
 
-    <div class="card">
-        <div class="card-header d-flex align-items-center justify-content-between">
-            <h2 class="card-title mb-0">Danh sách sản phẩm</h2>
-
-            <div class="card-tools">
-                <a href="{{ route('admin.product.create') }}" class="btn btn-primary">
-                    <i class="mdi mdi-plus"></i> Thêm mới
-                </a>
+                    <nav aria-label="breadcrumb">
+                        <ol class="breadcrumb">
+                            <li class="breadcrumb-item">
+                                <a href="{{ route('admin.dashboard') }}">
+                                    <i class="bi bi-house"></i>
+                                    Dashboard
+                                </a>
+                            </li>
+                            <li class="breadcrumb-item active" aria-current="page">
+                                Quản lý sản phẩm
+                            </li>
+                        </ol>
+                    </nav>
+                </div>
             </div>
         </div>
 
-        <div class="card-body">
-            <table class="table table-striped table-bordered" id="table">
-                <thead>
-                    <tr>
-                        <th>Ảnh</th>
-                        <th>Tên sản phẩm</th>
-                        <th>SKU</th>
-                        <th>Trạng thái</th>
-                        <th>Thao tác</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    @foreach ($products as $product)
-                        <tr>
-                            <td style="width:70px">
-                                <img src="{{ asset($product->image) }}" alt="{{ $product->name }}"
-                                    class="custom-img-table" />
-                            </td>
-                            <td>{{ $product->name }}</td>
-                            <td>
-                                {{ $product->sku }}
-                            </td>
-                            <td>
-                                <input type="checkbox" class="js-switch" {{ $product->status == 2 ? 'checked' : '' }}
-                                    data-id={{ $product->id }}>
+        <!-- Page body -->
+        <div class="page-body">
+            <div class="card">
+                <div>
+                    <div class="card-header">
+                        <h3 class="card-title">
+                            Danh sách sản phẩm
+                        </h3>
+                        <div class="card-actions">
+                            <a href="{{ route('admin.product.create') }}" class="btn btn-primary">
+                                <i class="ti ti-plus fs-4 me-1"></i>
+                                Thêm mới
+                            </a>
+                        </div>
+                    </div>
+                </div>
 
-                            </td>
-                            <td>
-                                <a href="{{ route('admin.product.edit', $product->id) }}" class="btn btn-sm btn-primary">
-                                    <i data-feather="edit"></i>
-                                </a>
 
-                                <a href="{{ route('admin.product.delete', $product->id) }}"
-                                    class="btn btn-sm btn-danger delete-item">
-                                    <i data-feather="trash"></i>
-                                </a>
-                            </td>
-                        </tr>
-                    @endforeach
-                </tbody>
-            </table>
+                <div class="card-body">
+                    <div class="table-responsive">
+                        @include('admin.layout.partials.toggle-column')
+                        {{ $dataTable->table(['class' => 'table table-bordered table-striped'], true) }}
+                    </div>
+                </div>
+            </div>
         </div>
     </div>
 @endsection
 
+@push('libs-js')
+    <script src="{{ asset('admin/js/buttons.server-side.js') }}"></script>
+@endpush
+
+
 @push('scripts')
+    {{ $dataTable->scripts() }}
+
+    @include('admin.layout.partials.scripts', [
+        'id_table' => $dataTable->getTableAttribute('id'),
+    ])
+
     <script>
-        $('.js-switch').change(function() {
-            let status = $(this).prop('checked') === true ? 2 : 1;
-            let productId = $(this).data('id');
+        $(document).on('change', '.form-check-input', function() {
+            let status = $(this).prop('checked') == true ? 2 : 1;
+            let id = $(this).data('id');
 
             $.ajax({
-                type: "GET",
-                dataType: "json",
+                type: 'PATCH',
+                dataType: 'json',
                 url: '{{ route('admin.product.update.status') }}',
                 data: {
-                    status: status,
-                    product_id: productId
+                    '_token': '{{ csrf_token() }}',
+                    'status': status,
+                    'product_id': id
                 },
                 success: function(data) {
-                    if (data.status == 'success') {
-                        FuiToast.success('Cập nhật trạng thái thành công');
-                    } else {
-                        FuiToast.error('Cập nhật trạng thái thất bại');
-                        $('.js-switch').prop('checked', !status);
-                    }
+                    FuiToast.success('Cập nhật trạng thái thành công');
                 }
             });
         });

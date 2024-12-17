@@ -45,6 +45,18 @@
                     </div>
                 </div>
 
+                <div class="text-danger" style="padding: 20px 20px 0 20px;">
+                    <p>
+                        <strong>Lưu ý:</strong>
+                        <span>
+                            Đây là phần chỉ dành riêng cho Nhà phát triển. Các Dev sẽ sử dụng slug ( permission_name )
+                            để lập trình, đóng gói các chức năng để có thể phân quyền. Vui lòng không xóa hoặc điều
+                            chỉnh các Quyền nếu bạn không phải Dev hoặc không biết về nó để tránh bị Lỗi toàn bộ hệ
+                            thống.
+                        </span>
+                    </p>
+                </div>
+
 
                 <div class="card-body">
                     <div class="table-responsive">

@@ -68,10 +68,10 @@
                                         </label>
 
                                         <select class="form-select" name="type" id="type">
-                                            <option value="1" {{ $attribute->type == 1 ? 'selected' : '' }}>Nút
+                                            <option value="1" {{ $attribute->type == 1 ? 'selected' : '' }}>Màu sắc
                                             </option>
                                             <option value="2" {{ $attribute->type == 2 ? 'selected' : '' }}>
-                                                Màu</option>
+                                                Nút</option>
                                         </select>
                                     </div>
 

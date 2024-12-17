@@ -879,6 +879,11 @@ select+.select2-container--bootstrap-5 {
     font-size: 52px;
 }
 
+.icon {
+    width: auto;
+    height: auto;
+}
+
 .control-label {
     margin-bottom: 8px;
 }

@@ -2,7 +2,7 @@
     $attribute = \App\Models\Attribute::findOrFail($attribute_id);
 @endphp
 
-@if ($attribute->type == 1)
+@if ($attribute->type == 2)
     {{ $name }}
 @else
     <div class="w-full d-flex align-items-center justify-content-center">

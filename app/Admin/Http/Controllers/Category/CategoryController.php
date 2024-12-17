@@ -68,4 +68,29 @@ class CategoryController extends Controller
             'message' => 'Xóa danh mục thành công'
         ]);
     }
+
+    public function get()
+    {
+        $offset = request()->get('offset', 0);
+        $limit = 10;
+
+        $categories = $this->repository->getFlatTree();
+        $categoriesArray = $categories->toArray();
+
+        if (request()->has('search')) {
+            $search = request()->get('search');
+            $categoriesArray = array_filter($categoriesArray, function ($cegory) use ($search) {
+                return strpos($cegory['name'], $search) !== false;
+            });
+        }
+
+        $total = count($categoriesArray);
+
+        $categoriesArray = array_slice($categoriesArray, $offset, $limit);
+
+        return response()->json([
+            'categories' => $categoriesArray,
+            'total' => $total
+        ]);
+    }
 }

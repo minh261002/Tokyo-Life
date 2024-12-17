@@ -1,10 +1,10 @@
 <?php
 
-namespace App\Admin\Services\Instructor;
+namespace App\Admin\Services\AttributeVariation;
 
 use Illuminate\Http\Request;
 
-interface InstructorServiceInterface
+interface AttributeVariationServiceInterface
 {
     public function store(Request $request);
 

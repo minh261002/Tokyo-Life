@@ -1,6 +1,8 @@
 <?php
 
 use App\Admin\Http\Controllers\Admin\AdminController;
+use App\Admin\Http\Controllers\Attribute\AttributeController;
+use App\Admin\Http\Controllers\AttributeVariation\AttributeVariationController;
 use App\Admin\Http\Controllers\Category\CategoryController;
 use App\Admin\Http\Controllers\Customer\CustomerController;
 use App\Admin\Http\Controllers\Auth\AuthController;
@@ -9,7 +11,10 @@ use App\Admin\Http\Controllers\Module\ModuleController;
 use App\Admin\Http\Controllers\Permission\PermissionController;
 use App\Admin\Http\Controllers\Post\PostCatalogueController;
 use App\Admin\Http\Controllers\Post\PostController;
+use App\Admin\Http\Controllers\Product\ProductAttributeController;
+use App\Admin\Http\Controllers\Product\ProductController;
 use App\Admin\Http\Controllers\Role\RoleController;
+use App\Admin\Http\Controllers\Product\ProductVariationController;
 use Illuminate\Support\Facades\Route;
 
 Route::prefix('admin')->as('admin.')->group(function () {
@@ -194,6 +199,66 @@ Route::prefix('admin')->as('admin.')->group(function () {
 
             Route::middleware(['permission:deleteCategory'])->group(function () {
                 Route::delete('/delete/{id}', [CategoryController::class, 'delete'])->name('delete');
+            });
+        });
+
+        Route::prefix('attribute')->as('attribute.')->group(function () {
+            Route::middleware(['permission:viewAttribute'])->group(function () {
+                Route::get('/', [AttributeController::class, 'index'])->name('index');
+                Route::get('/{attributeId}/variation', [AttributeVariationController::class, 'index'])->name('variations');
+            });
+
+            Route::middleware(['permission:createAttribute'])->group(function () {
+                Route::get('/create', [AttributeController::class, 'create'])->name('create');
+                Route::post('/store', [AttributeController::class, 'store'])->name('store');
+
+                Route::get('/{attributeId}/variation/create', [AttributeVariationController::class, 'create'])->name('variation.create');
+                Route::post('/variation/store', [AttributeVariationController::class, 'store'])->name('variation.store');
+            });
+
+            Route::middleware(['permission:editAttribute'])->group(function () {
+                Route::get('/edit/{id}', [AttributeController::class, 'edit'])->name('edit');
+                Route::put('/update', [AttributeController::class, 'update'])->name('update');
+
+                Route::get('/variation/edit/{id}', [AttributeVariationController::class, 'edit'])->name('variation.edit');
+                Route::put('/variation/update', [AttributeVariationController::class, 'update'])->name('variation.update');
+            });
+
+            Route::middleware(['permission:deleteAttribute'])->group(function () {
+                Route::delete('/delete/{id}', [AttributeController::class, 'delete'])->name('delete');
+
+                Route::delete('/variation/delete/{id}', [AttributeVariationController::class, 'delete'])->name('variation.delete');
+            });
+        });
+
+        Route::prefix('product')->group(function () {
+            Route::middleware(['permission:viewProduct'])->group(function () {
+                Route::get('/', [ProductController::class, 'index'])->name('product.index');
+
+                Route::prefix('attributes')->group(function () {
+                    Route::get('/get', [ProductAttributeController::class, 'create'])->name('product.attributes.get');
+                });
+
+                Route::prefix('variations')->group(function () {
+                    Route::get('/check', [ProductVariationController::class, 'check'])->name('product.variations.check');
+                    Route::get('/create', [ProductVariationController::class, 'create'])->name('product.variations.create');
+                    Route::get('/delete/{id}', [ProductVariationController::class, 'delete'])->name('product.variations.delete');
+                });
+            });
+
+            Route::middleware(['permission:createProduct'])->group(function () {
+                Route::get('/create', [ProductController::class, 'create'])->name('product.create');
+                Route::post('/store', [ProductController::class, 'store'])->name('product.store');
+            });
+
+            Route::middleware(['permission:editProduct'])->group(function () {
+                Route::get('/edit/{id}', [ProductController::class, 'edit'])->name('product.edit');
+                Route::put('/update', [ProductController::class, 'update'])->name('product.update');
+                Route::patch('/update/status', [ProductController::class, 'updateStatus'])->name('product.update.status');
+            });
+
+            Route::middleware(['permission:deleteProduct'])->group(function () {
+                Route::delete('/delete/{id}', [ProductController::class, 'delete'])->name('product.delete');
             });
         });
     });
