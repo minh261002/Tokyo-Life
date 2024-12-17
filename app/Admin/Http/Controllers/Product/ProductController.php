@@ -2,7 +2,10 @@
 
 namespace App\Admin\Http\Controllers\Product;
 
+use App\Admin\DataTables\Product\ProductDataTable;
 use App\Admin\Http\Requests\Product\ProductStoreRequest;
+use App\Admin\Http\Requests\Product\ProductUpdateRequest;
+use App\Admin\Http\Resources\ProductResource;
 use App\Admin\Repositories\Attribute\AttributeRepositoryInterface;
 use App\Admin\Repositories\AttributeVariation\AttributeVariationRepositoryInterface;
 use App\Admin\Repositories\Category\CategoryRepositoryInterface;
@@ -35,10 +38,9 @@ class ProductController extends Controller
         $this->attributeVariationRepository = $attributeVariationRepository;
     }
 
-    public function index(): View
+    public function index(ProductDataTable $dataTable)
     {
-        // $products = $this->productRepository->getAll();
-        // return view('admin.product.index', compact('products'));
+        return $dataTable->render('admin.product.index');
     }
 
     public function create(): View
@@ -50,7 +52,6 @@ class ProductController extends Controller
 
     public function store(ProductStoreRequest $request)
     {
-        // dd($request['product_attribute']['attribute_id']);
         $this->productService->store($request);
         return redirect()->route('admin.product.index');
     }
@@ -84,9 +85,7 @@ class ProductController extends Controller
     public function update(ProductUpdateRequest $request)
     {
         $this->productService->update($request);
-
-        notyf()->success('Cập nhật sản phẩm thành công');
-        return redirect()->back();
+        return redirect()->back()->with('success', 'Cập nhật sản phẩm thành công');
     }
 
     public function updateStatus(Request $request)

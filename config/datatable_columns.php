@@ -52,7 +52,6 @@ return [
             'addClass' => 'text-center align-middle'
         ],
     ],
-
     'attribute_values' => [
         'name' => [
             'title' => 'Tên giá trị',
@@ -121,15 +120,22 @@ return [
         ],
     ],
     'products' => [
-        'variant' => [
-            'title' => 'Biến thể',
+        'image' => [
+            'title' => 'Ảnh',
             'orderable' => false,
             'exportable' => false,
             'printable' => false,
-            'addClass' => 'text-center align-middle',
+            'addClass' => 'text-center align-middle w-100px',
         ],
         'name' => [
             'title' => 'Tên sản phẩm',
+            'orderable' => true,
+            'exportable' => true,
+            'printable' => true,
+            'addClass' => 'text-center align-middle',
+        ],
+        'sku' => [
+            'title' => 'SKU',
             'orderable' => true,
             'exportable' => true,
             'printable' => true,
@@ -140,13 +146,6 @@ return [
             'orderable' => true,
             'exportable' => true,
             'printable' => true,
-            'addClass' => 'text-center align-middle',
-        ],
-        'detail' => [
-            'title' => 'Chi tiết',
-            'orderable' => false,
-            'exportable' => false,
-            'printable' => false,
             'addClass' => 'text-center align-middle',
         ],
         'action' => [

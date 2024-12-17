@@ -18,7 +18,6 @@ return new class extends Migration {
             $table->string('image')->nullable();
             $table->integer('qty')->default(0);
             $table->integer('position')->default(0);
-            $table->tinyInteger('status')->default(1); //1: active, 2: inactive
             $table->foreign('product_id')->references('id')->on('products')->onDelete('cascade');
             $table->timestamps();
         });

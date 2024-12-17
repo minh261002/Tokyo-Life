@@ -254,7 +254,7 @@ Route::prefix('admin')->as('admin.')->group(function () {
             Route::middleware(['permission:editProduct'])->group(function () {
                 Route::get('/edit/{id}', [ProductController::class, 'edit'])->name('product.edit');
                 Route::put('/update', [ProductController::class, 'update'])->name('product.update');
-                Route::get('/update/status', [ProductController::class, 'updateStatus'])->name('product.update.status');
+                Route::patch('/update/status', [ProductController::class, 'updateStatus'])->name('product.update.status');
             });
 
             Route::middleware(['permission:deleteProduct'])->group(function () {

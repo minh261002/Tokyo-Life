@@ -45,6 +45,12 @@ class ProductService implements ProductServiceInterface
             if (isset($this->data['gallery'])) {
                 $this->data['gallery'] = json_encode($this->data['gallery']);
             }
+
+            //không có ảnh thì lấy ảnh mặc định
+            if (!isset($this->data['product']['image'])) {
+                $this->data['product']['image'] = '/admin/images/not-found.jpg';
+            }
+
             isset($this->data['product']['gallery']) && $this->data['product']['gallery'] = $this->data['gallery'];
             $product = $this->repository->create($this->data['product']);
             $product->categories()->sync($categories);
@@ -76,7 +82,15 @@ class ProductService implements ProductServiceInterface
                 $this->data['gallery'] = json_encode($this->data['gallery']);
             }
 
-            isset($this->data['gallery']) && $this->data['product']['gallery'] = $this->data['gallery'];
+            if (!isset($this->data['product']['image'])) {
+                $this->data['product']['image'] = '/admin/images/not-found.jpg';
+            }
+
+            if (isset($this->data['gallery'])) {
+                $this->data['product']['gallery'] = $this->data['gallery'];
+            } else {
+                $this->data['product']['gallery'] = null;
+            }
             $product = $this->repository->update($productId, $this->data['product']);
             $product->categories()->sync($categories);
 

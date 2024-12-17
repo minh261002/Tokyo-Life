@@ -37,7 +37,7 @@
                             Danh sách sản phẩm
                         </h3>
                         <div class="card-actions">
-                            <a href="{{ route('admin.post.create') }}" class="btn btn-primary">
+                            <a href="{{ route('admin.product.create') }}" class="btn btn-primary">
                                 <i class="ti ti-plus fs-4 me-1"></i>
                                 Thêm mới
                             </a>
@@ -81,7 +81,7 @@
                 data: {
                     '_token': '{{ csrf_token() }}',
                     'status': status,
-                    'id': id
+                    'product_id': id
                 },
                 success: function(data) {
                     FuiToast.success('Cập nhật trạng thái thành công');

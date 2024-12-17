@@ -200,8 +200,8 @@
                         <div class="card-body">
                             <div class="form-group">
                                 <select name="product[status]" id="status" class="form-select">
-                                    <option value="1">Bản nháp</option>
-                                    <option value="2">Đã xuất bản</option>
+                                    <option value="1">Không hoạt động</option>
+                                    <option value="2">Đang hoạt động</option>
                                 </select>
                                 @error('product[status]')
                                     <span class="text-danger">{{ $message }}</span>
