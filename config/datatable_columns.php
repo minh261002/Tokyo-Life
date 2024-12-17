@@ -461,21 +461,21 @@ return [
         ],
         'list_order' => [
             'title' => 'Ds đơn hàng',
-            'orderable' => true,
+            'orderable' => false,
             'exportable' => true,
             'printable' => true,
             'addClass' => 'text-center align-middle'
         ],
         'list_wishlist' => [
             'title' => 'Ds yêu thích',
-            'orderable' => true,
+            'orderable' => false,
             'exportable' => true,
             'printable' => true,
             'addClass' => 'text-center align-middle'
         ],
         'type' => [
             'title' => 'Loại',
-            'orderable' => true,
+            'orderable' => false,
             'exportable' => true,
             'printable' => true,
             'addClass' => 'text-center align-middle'
