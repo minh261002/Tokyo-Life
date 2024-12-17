@@ -98,6 +98,7 @@
         $(document).ready(function() {
             $(document).on('click', '.btn-delete', function(e) {
                 e.preventDefault();
+                const row = $(this).closest('tr');
                 let url = $(this).attr('href');
 
                 $.ajax({
@@ -107,12 +108,9 @@
                         _token: '{{ csrf_token() }}'
                     },
                     success: function(response) {
-                        if (response.status == 'success') {
-                            FuiToast.success(response.message);
-                            setTimeout(() => {
-                                location.reload();
-                            }, 1000);
-                        }
+                        FuiToast.success(response.message);
+                        row.remove();
+                        $('.buttons-reload').click();
                     }
                 });
             });

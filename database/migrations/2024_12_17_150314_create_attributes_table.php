@@ -16,7 +16,7 @@ return new class extends Migration {
             $table->string('name');
             $table->string('slug');
             $table->tinyInteger('position')->default(0);
-            $table->text('desc')->nullable();
+            $table->text('description')->nullable();
             $table->timestamps();
         });
     }

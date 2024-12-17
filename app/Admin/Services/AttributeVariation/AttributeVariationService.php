@@ -2,7 +2,7 @@
 
 namespace App\Admin\Services\AttributeVariation;
 
-use App\Admin\Repositories\Attribute\AttributeRepositoryInterface;
+use App\Admin\Repositories\AttributeVariation\AttributeVariationRepositoryInterface;
 use Illuminate\Http\Request;
 
 class AttributeVariationService implements AttributeVariationServiceInterface
@@ -10,7 +10,7 @@ class AttributeVariationService implements AttributeVariationServiceInterface
     protected $repository;
 
     public function __construct(
-        AttributeRepositoryInterface $repository,
+        AttributeVariationRepositoryInterface $repository,
     ) {
         $this->repository = $repository;
     }

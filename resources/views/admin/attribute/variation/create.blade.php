@@ -78,7 +78,7 @@
                                             value="{{ old('position') }}">
                                     </div>
 
-                                    @if ($attribute->type == 2)
+                                    @if ($attribute->type == 1)
                                         <div class="col-md-6 form-group mb-3">
                                             <label for="meta_value" class="form-label">
                                                 Giá trị

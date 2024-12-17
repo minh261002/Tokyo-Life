@@ -1,6 +1,8 @@
 <?php
 
 use App\Admin\Http\Controllers\Admin\AdminController;
+use App\Admin\Http\Controllers\Attribute\AttributeController;
+use App\Admin\Http\Controllers\AttributeVariation\AttributeVariationController;
 use App\Admin\Http\Controllers\Category\CategoryController;
 use App\Admin\Http\Controllers\Customer\CustomerController;
 use App\Admin\Http\Controllers\Auth\AuthController;
@@ -198,24 +200,31 @@ Route::prefix('admin')->as('admin.')->group(function () {
         });
 
         Route::prefix('attribute')->as('attribute.')->group(function () {
-            Route::middleware(['permission:viewCategory'])->group(function () {
-                Route::get('/', [CategoryController::class, 'index'])->name('index');
-                Route::get('/get', [CategoryController::class, 'get'])->name('get');
+            Route::middleware(['permission:viewAttribute'])->group(function () {
+                Route::get('/', [AttributeController::class, 'index'])->name('index');
+                Route::get('/{attributeId}/variation', [AttributeVariationController::class, 'index'])->name('variations');
             });
 
-            Route::middleware(['permission:createCategory'])->group(function () {
-                Route::get('/create', [CategoryController::class, 'create'])->name('create');
-                Route::post('/store', [CategoryController::class, 'store'])->name('store');
+            Route::middleware(['permission:createAttribute'])->group(function () {
+                Route::get('/create', [AttributeController::class, 'create'])->name('create');
+                Route::post('/store', [AttributeController::class, 'store'])->name('store');
+
+                Route::get('/{attributeId}/variation/create', [AttributeVariationController::class, 'create'])->name('variation.create');
+                Route::post('/variation/store', [AttributeVariationController::class, 'store'])->name('variation.store');
             });
 
-            Route::middleware(['permission:editCategory'])->group(function () {
-                Route::get('/edit/{id}', [CategoryController::class, 'edit'])->name('edit');
-                Route::put('/update', [CategoryController::class, 'update'])->name('update');
-                Route::patch('/update-status', [CategoryController::class, 'updateStatus'])->name('update.status');
+            Route::middleware(['permission:editAttribute'])->group(function () {
+                Route::get('/edit/{id}', [AttributeController::class, 'edit'])->name('edit');
+                Route::put('/update', [AttributeController::class, 'update'])->name('update');
+
+                Route::get('/variation/edit/{id}', [AttributeVariationController::class, 'edit'])->name('variation.edit');
+                Route::put('/variation/update', [AttributeVariationController::class, 'update'])->name('variation.update');
             });
 
-            Route::middleware(['permission:deleteCategory'])->group(function () {
-                Route::delete('/delete/{id}', [CategoryController::class, 'delete'])->name('delete');
+            Route::middleware(['permission:deleteAttribute'])->group(function () {
+                Route::delete('/delete/{id}', [AttributeController::class, 'delete'])->name('delete');
+
+                Route::delete('/variation/delete/{id}', [AttributeVariationController::class, 'delete'])->name('variation.delete');
             });
         });
     });
