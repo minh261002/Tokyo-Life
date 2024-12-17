@@ -11,7 +11,10 @@ use App\Admin\Http\Controllers\Module\ModuleController;
 use App\Admin\Http\Controllers\Permission\PermissionController;
 use App\Admin\Http\Controllers\Post\PostCatalogueController;
 use App\Admin\Http\Controllers\Post\PostController;
+use App\Admin\Http\Controllers\Product\ProductAttributeController;
+use App\Admin\Http\Controllers\Product\ProductController;
 use App\Admin\Http\Controllers\Role\RoleController;
+use App\Http\Controllers\Admin\Product\ProductVariationController;
 use Illuminate\Support\Facades\Route;
 
 Route::prefix('admin')->as('admin.')->group(function () {
@@ -225,6 +228,37 @@ Route::prefix('admin')->as('admin.')->group(function () {
                 Route::delete('/delete/{id}', [AttributeController::class, 'delete'])->name('delete');
 
                 Route::delete('/variation/delete/{id}', [AttributeVariationController::class, 'delete'])->name('variation.delete');
+            });
+        });
+
+        Route::prefix('product')->group(function () {
+            Route::middleware(['permission:viewProduct'])->group(function () {
+                Route::get('/', [ProductController::class, 'index'])->name('product.index');
+
+                Route::prefix('attributes')->group(function () {
+                    Route::get('/get', [ProductAttributeController::class, 'create'])->name('product.attributes.get');
+                });
+
+                Route::prefix('variations')->group(function () {
+                    Route::get('/check', [ProductVariationController::class, 'check'])->name('product.variations.check');
+                    Route::get('/create', [ProductVariationController::class, 'create'])->name('product.variations.create');
+                    Route::get('/delete/{id}', [ProductVariationController::class, 'delete'])->name('product.variations.delete');
+                });
+            });
+
+            Route::middleware(['permission:createProduct'])->group(function () {
+                Route::get('/create', [ProductController::class, 'create'])->name('product.create');
+                Route::post('/store', [ProductController::class, 'store'])->name('product.store');
+            });
+
+            Route::middleware(['permission:editProduct'])->group(function () {
+                Route::get('/edit/{id}', [ProductController::class, 'edit'])->name('product.edit');
+                Route::put('/update', [ProductController::class, 'update'])->name('product.update');
+                Route::get('/update/status', [ProductController::class, 'updateStatus'])->name('product.update.status');
+            });
+
+            Route::middleware(['permission:deleteProduct'])->group(function () {
+                Route::delete('/delete/{id}', [ProductController::class, 'delete'])->name('product.delete');
             });
         });
     });
