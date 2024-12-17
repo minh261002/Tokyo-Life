@@ -18,8 +18,8 @@ class RepositoryServiceProvider extends ServiceProvider
         'App\Admin\Repositories\Attribute\AttributeRepositoryInterface' => 'App\Admin\Repositories\Attribute\AttributeRepository',
         'App\Admin\Repositories\AttributeVariation\AttributeVariationRepositoryInterface' => 'App\Admin\Repositories\AttributeVariation\AttributeVariationRepository',
         'App\Admin\Repositories\Product\ProductRepositoryInterface' => 'App\Admin\Repositories\Product\ProductRepository',
-        'App\Admin\Repositories\ProductAttribute\ProductAttributeRepositoryInterface' => 'App\Admin\Repositories\ProductAttribute\ProductAttributeRepository',
-        'App\Admin\Repositories\ProductVariation\ProductVariationRepositoryInterface' => 'App\Admin\Repositories\ProductVariation\ProductVariationRepository',
+        'App\Admin\Repositories\Product\ProductAttributeRepositoryInterface' => 'App\Admin\Repositories\Product\ProductAttributeRepository',
+        'App\Admin\Repositories\Product\ProductVariationRepositoryInterface' => 'App\Admin\Repositories\Product\ProductVariationRepository',
     ];
     /**
      * Register any application services.

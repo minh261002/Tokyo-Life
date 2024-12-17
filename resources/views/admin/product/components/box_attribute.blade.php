@@ -5,8 +5,8 @@
             {{ $attribute->name }}
         </a>
         <button type="button"
-            class="btn btn-sm btn-danger position-absolute top-50 end-0 translate-middle-y me-2 remove-attribute">
-            <i data-feather="trash"></i>
+            class="btn btn-danger position-absolute top-50 end-0 translate-middle-y me-2 remove-attribute">
+            <i class="ti ti-trash"></i>
         </button>
     </div>
 

@@ -1,12 +1,12 @@
 <?php
 
-namespace App\Http\Controllers\Admin\Product;
+namespace App\Admin\Http\Controllers\Product;
+use App\Admin\Repositories\Attribute\AttributeRepositoryInterface;
+use App\Admin\Repositories\AttributeVariation\AttributeVariationRepositoryInterface;
+use App\Admin\Repositories\Product\ProductVariationRepositoryInterface;
+use App\Admin\Services\Product\ProductServiceInterface;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
-use App\Repositories\Interfaces\AttributeRepositoryInterface;
-use App\Repositories\Interfaces\AttributeVariationRepositoryInterface;
-use App\Repositories\Interfaces\Product\ProductVariationRepositoryInterface;
-use App\Services\Interfaces\ProductServiceInterface;
 use App\Traits\Setup;
 
 class ProductVariationController extends Controller

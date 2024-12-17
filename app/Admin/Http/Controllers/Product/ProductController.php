@@ -5,9 +5,9 @@ namespace App\Admin\Http\Controllers\Product;
 use App\Admin\Repositories\Attribute\AttributeRepositoryInterface;
 use App\Admin\Repositories\AttributeVariation\AttributeVariationRepositoryInterface;
 use App\Admin\Repositories\Category\CategoryRepositoryInterface;
+use App\Admin\Repositories\Product\ProductRepositoryInterface;
 use App\Admin\Services\Product\ProductServiceInterface;
 use App\Http\Controllers\Controller;
-use App\Repositories\Interfaces\Product\ProductRepositoryInterface;
 use Illuminate\Contracts\View\View;
 use Illuminate\Http\Request;
 

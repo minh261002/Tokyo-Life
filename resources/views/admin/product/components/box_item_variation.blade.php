@@ -20,7 +20,7 @@
             data-bs-toggle="collapse" data-bs-target="#collapseVariation{{ $identity ?? ($productVariation->id ?? '') }}"
             aria-expanded="false" aria-controls="collapseVariation{{ $identity ?? ($productVariation->id ?? '') }}">
             <button type="button" class="d-flex flex-end btn btn-sm btn-danger remove-product-variation-item">
-                <i class="mdi mdi-close"></i>
+                <i class="ti ti-close"></i>
             </button>
         </div>
     </div>

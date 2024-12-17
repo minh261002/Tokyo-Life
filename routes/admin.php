@@ -14,7 +14,7 @@ use App\Admin\Http\Controllers\Post\PostController;
 use App\Admin\Http\Controllers\Product\ProductAttributeController;
 use App\Admin\Http\Controllers\Product\ProductController;
 use App\Admin\Http\Controllers\Role\RoleController;
-use App\Http\Controllers\Admin\Product\ProductVariationController;
+use App\Admin\Http\Controllers\Product\ProductVariationController;
 use Illuminate\Support\Facades\Route;
 
 Route::prefix('admin')->as('admin.')->group(function () {

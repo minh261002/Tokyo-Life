@@ -5,7 +5,7 @@ namespace App\Admin\Services\Product;
 use App\Admin\Repositories\AttributeVariation\AttributeVariationRepositoryInterface;
 use App\Admin\Repositories\Product\ProductAttributeRepositoryInterface;
 use App\Admin\Repositories\Product\ProductVariationRepositoryInterface;
-use App\Repositories\Interfaces\Product\ProductRepositoryInterface;
+use App\Admin\Repositories\Product\ProductRepositoryInterface;
 use App\Traits\Setup;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
