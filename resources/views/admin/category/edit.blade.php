@@ -150,6 +150,40 @@
                                 </div>
                             </div>
                         </div>
+                        <div class="card mt-3">
+                            <div class="card-header">
+                                <h3 class="card-title">
+                                    Tuỳ chọn
+                                </h3>
+                            </div>
+
+                            <div class="card-body">
+                                <div class="form-group mb-3">
+                                    <label for="show_home" class="form-label">
+                                        Hiển thị trong trang chủ
+                                    </label>
+                                    <select class="form-select" name="show_home" id="show_home">
+                                        <option value="1" {{ $category->show_home === 1 ? 'selected' : '' }}>Không
+                                            hiển thị</option>
+                                        <option value="2" {{ $category->show_home === 2 ? 'selected' : '' }}>Hiển
+                                            thị</option>
+                                    </select>
+                                </div>
+
+                                <div class="form-group">
+                                    <label for="show_menu" class="form-label">
+                                        Hiển thị trong menu
+                                    </label>
+                                    <select class="form-select" name="show_menu" id="show_menu">
+                                        <option value="1" {{ $category->show_menu === 1 ? 'selected' : '' }}>Không
+                                            hiển thị</option>
+                                        <option value="2" {{ $category->show_menu === 2 ? 'selected' : '' }}>
+                                            Hiển thị
+                                        </option>
+                                    </select>
+                                </div>
+                            </div>
+                        </div>
 
                         <div class="card mt-3">
                             <div class="card-header">

@@ -20,8 +20,8 @@ return new class extends Migration {
             $table->text('image')->nullable();
             $table->integer('position')->default(0);
             $table->tinyInteger('status')->default(1);
-            $table->boolean('show_menu')->default(0);
-            $table->boolean('show_home')->default(0);
+            $table->tinyInteger('show_menu')->default(1);
+            $table->tinyInteger('show_home')->default(1);
             $table->text('desc')->nullable();
             $table->string('meta_title')->nullable();
             $table->string('meta_description')->nullable();

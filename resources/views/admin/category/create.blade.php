@@ -149,6 +149,36 @@
                         <div class="card mt-3">
                             <div class="card-header">
                                 <h3 class="card-title">
+                                    Tuỳ chọn
+                                </h3>
+                            </div>
+
+                            <div class="card-body">
+                                <div class="form-group mb-3">
+                                    <label for="show_home" class="form-label">
+                                        Hiển thị trang chủ
+                                    </label>
+                                    <select class="form-select" name="show_home" id="show_home">
+                                        <option value="1">Không hiển thị</option>
+                                        <option value="2">Hiển thị</option>
+                                    </select>
+                                </div>
+
+                                <div class="form-group">
+                                    <label for="show_menu" class="form-label">
+                                        Hiển thị menu
+                                    </label>
+                                    <select class="form-select" name="show_menu" id="show_menu">
+                                        <option value="1">Không hiển thị</option>
+                                        <option value="2">Hiển thị</option>
+                                    </select>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="card mt-3">
+                            <div class="card-header">
+                                <h3 class="card-title">
                                     Ảnh
                                 </h3>
                             </div>

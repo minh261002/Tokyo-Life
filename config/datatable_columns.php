@@ -1,57 +1,6 @@
 <?php
 
 return [
-    'instructor' => [
-        'user_id' => [
-            'title' => 'Họ và tên',
-            'orderable' => true,
-            'exportable' => true,
-            'printable' => true,
-            'addClass' => 'text-center align-middle'
-        ],
-        'course' => [
-            'title' => 'Khóa học',
-            'orderable' => false,
-            'exportable' => true,
-            'printable' => true,
-            'addClass' => 'text-center align-middle'
-        ],
-        'order' => [
-            'title' => 'Đơn hàng',
-            'orderable' => false,
-            'exportable' => true,
-            'printable' => true,
-            'addClass' => 'text-center align-middle'
-        ],
-        'is_identity' => [
-            'title' => 'Định danh',
-            'orderable' => false,
-            'exportable' => true,
-            'printable' => true,
-            'addClass' => 'text-center align-middle'
-        ],
-        'is_verify' => [
-            'title' => 'Duyệt',
-            'orderable' => false,
-            'exportable' => true,
-            'printable' => true,
-            'addClass' => 'text-center align-middle'
-        ],
-        'status' => [
-            'title' => 'Trạng thái',
-            'orderable' => false,
-            'exportable' => true,
-            'printable' => true,
-            'addClass' => 'text-center align-middle'
-        ],
-        'action' => [
-            'title' => 'Thao tác',
-            'orderable' => false,
-            'exportable' => false,
-            'printable' => false,
-            'addClass' => 'text-center align-middle'
-        ],
-    ],
     'orders' => [
         'invoice_number' => [
             'title' => 'Mã đơn hàng',
@@ -103,182 +52,7 @@ return [
             'addClass' => 'text-center align-middle'
         ],
     ],
-    'menus' => [
-        'name' => [
-            'title' => 'Tên menu',
-            'orderable' => true,
-            'exportable' => true,
-            'printable' => true,
-            'addClass' => 'text-center align-middle'
-        ],
-        'description' => [
-            'title' => 'Mô tả',
-            'orderable' => true,
-            'exportable' => true,
-            'printable' => true,
-            'addClass' => 'text-center align-middle'
-        ],
-        'status' => [
-            'title' => 'Trạng thái',
-            'orderable' => true,
-            'exportable' => true,
-            'printable' => true,
-            'addClass' => 'text-center align-middle'
-        ],
-        'action' => [
-            'title' => 'Thao tác',
-            'orderable' => false,
-            'exportable' => false,
-            'printable' => false,
-            'addClass' => 'text-center align-middle'
-        ],
-    ],
-    'qas' => [
-        'name' => [
-            'title' => 'Tên khách hàng',
-            'orderable' => true,
-            'exportable' => true,
-            'printable' => true,
-            'addClass' => 'text-center align-middle',
-        ],
-        'email' => [
-            'title' => 'Email',
-            'orderable' => true,
-            'exportable' => true,
-            'printable' => true,
-            'addClass' => 'text-center align-middle',
-        ],
-        'phone' => [
-            'title' => 'Số điện thoại',
-            'orderable' => true,
-            'exportable' => true,
-            'printable' => true,
-            'addClass' => 'text-center align-middle',
-        ],
-        'variations_id' => [
-            'title' => 'Sản phẩm',
-            'orderable' => true,
-            'exportable' => true,
-            'printable' => true,
-            'addClass' => 'text-center align-middle',
-        ],
-        'content' => [
-            'title' => 'Nội dung',
-            'orderable' => false,
-            'exportable' => false,
-            'printable' => false,
-            'addClass' => 'text-center align-middle',
-        ],
-        'status' => [
-            'title' => 'Trạng thái',
-            'orderable' => true,
-            'exportable' => true,
-            'printable' => true,
-            'addClass' => 'text-center align-middle',
-        ],
-        'action' => [
-            'title' => 'Thao tác',
-            'orderable' => false,
-            'exportable' => false,
-            'printable' => false,
-            'addClass' => 'text-center align-middle',
-        ],
-    ],
-    'reviews' => [
-        'user_id' => [
-            'title' => 'Khách hàng',
-            'orderable' => true,
-            'exportable' => true,
-            'printable' => true,
-            'addClass' => 'text-center align-middle',
-        ],
-        'variation_id' => [
-            'title' => 'Sản phẩm',
-            'orderable' => true,
-            'exportable' => true,
-            'printable' => true,
-            'addClass' => 'text-center align-middle',
-        ],
-        'rating' => [
-            'title' => 'Đánh giá',
-            'orderable' => true,
-            'exportable' => true,
-            'printable' => true,
-            'addClass' => 'text-center align-middle',
-        ],
-        'content' => [
-            'title' => 'Nội dung',
-            'orderable' => false,
-            'exportable' => false,
-            'printable' => false,
-            'addClass' => 'text-center align-middle',
-        ],
-        'status' => [
-            'title' => 'Trạng thái',
-            'orderable' => true,
-            'exportable' => true,
-            'printable' => true,
-            'addClass' => 'text-center align-middle',
-        ],
-        'created_at' => [
-            'title' => 'Ngày đánh giá',
-            'orderable' => true,
-            'exportable' => true,
-            'printable' => true,
-            'addClass' => 'text-center align-middle',
-        ],
-        'action' => [
-            'title' => 'Thao tác',
-            'orderable' => false,
-            'exportable' => false,
-            'printable' => false,
-            'addClass' => 'text-center align-middle',
-        ],
-    ],
-    'product_variations' => [
-        'image' => [
-            'title' => 'Ảnh',
-            'orderable' => false,
-            'exportable' => false,
-            'printable' => false,
-            'addClass' => 'text-center align-middle',
-        ],
-        'variation' => [
-            'title' => 'Biến thể',
-            'orderable' => true,
-            'exportable' => true,
-            'printable' => true,
-            'addClass' => 'text-center align-middle',
-        ],
-        'price' => [
-            'title' => 'Giá bán',
-            'orderable' => true,
-            'exportable' => true,
-            'printable' => true,
-            'addClass' => 'text-center align-middle',
-        ],
-        'quantity' => [
-            'title' => 'Số lượng',
-            'orderable' => true,
-            'exportable' => true,
-            'printable' => true,
-            'addClass' => 'text-center align-middle',
-        ],
-        'status' => [
-            'title' => 'Trạng thái',
-            'orderable' => true,
-            'exportable' => true,
-            'printable' => true,
-            'addClass' => 'text-center align-middle',
-        ],
-        'action' => [
-            'title' => 'Thao tác',
-            'orderable' => false,
-            'exportable' => false,
-            'printable' => false,
-            'addClass' => 'text-center align-middle',
-        ],
-    ],
+
     'attribute_values' => [
         'name' => [
             'title' => 'Tên giá trị',
@@ -398,8 +172,15 @@ return [
             'printable' => true,
             'addClass' => 'text-left align-middle',
         ],
-        'position' => [
-            'title' => 'Vị trí',
+        'show_home' => [
+            'title' => 'Hiển thị trang chủ',
+            'orderable' => true,
+            'exportable' => true,
+            'printable' => true,
+            'addClass' => 'text-center align-middle',
+        ],
+        'show_menu' => [
+            'title' => 'Hiển thị menu',
             'orderable' => true,
             'exportable' => true,
             'printable' => true,
