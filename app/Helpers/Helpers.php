@@ -1,4 +1,5 @@
 <?php
+use Illuminate\Support\Str;
 
 if (!function_exists('formatDateTime')) {
     function formatDateTime($time)
@@ -82,7 +83,7 @@ function uniqid_real($lenght = 13)
     } else {
         throw new \Exception("no cryptographically secure random function available");
     }
-    return Str::upper(substr(bin2hex($bytes), 0, $lenght));
+    return str::upper(substr(bin2hex($bytes), 0, $lenght));
 }
 
 function format_price($price)

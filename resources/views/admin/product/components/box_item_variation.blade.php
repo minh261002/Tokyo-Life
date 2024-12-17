@@ -20,7 +20,7 @@
             data-bs-toggle="collapse" data-bs-target="#collapseVariation{{ $identity ?? ($productVariation->id ?? '') }}"
             aria-expanded="false" aria-controls="collapseVariation{{ $identity ?? ($productVariation->id ?? '') }}">
             <button type="button" class="d-flex flex-end btn btn-sm btn-danger remove-product-variation-item">
-                <i class="ti ti-close"></i>
+                <i class="ti ti-x"></i>
             </button>
         </div>
     </div>
@@ -37,8 +37,7 @@
                     <span
                         class="btn-ckfinder image img-cover image-target{{ $identity ?? ($productVariation->id ?? '') }}"
                         data-input-id="productVariationImage{{ $identity ?? ($productVariation->id ?? '') }}">
-                        <img class="w-100"
-                            src="{{ asset($productVariation->image ?? 'admin/assets/images/not-found.jpg') }}"
+                        <img class="w-100" src="{{ asset($productVariation->image ?? 'admin/images/not-found.jpg') }}"
                             alt="">
                     </span>
                     <input type="hidden"

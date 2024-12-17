@@ -6,7 +6,7 @@
         </a>
         <button type="button"
             class="btn btn-danger position-absolute top-50 end-0 translate-middle-y me-2 remove-attribute">
-            <i class="ti ti-trash"></i>
+            <i class="ti ti-x"></i>
         </button>
     </div>
 

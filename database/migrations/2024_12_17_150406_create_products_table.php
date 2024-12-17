@@ -12,6 +12,7 @@ return new class extends Migration {
     {
         Schema::create('products', function (Blueprint $table) {
             $table->id();
+            $table->tinyInteger('type')->default(1); //1: simple, 2: variable
             $table->string('name');
             $table->string('slug')->unique();
             $table->integer('price')->nullable();

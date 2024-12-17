@@ -2,6 +2,7 @@
 
 namespace App\Admin\Http\Controllers\Product;
 
+use App\Admin\Http\Requests\Product\ProductStoreRequest;
 use App\Admin\Repositories\Attribute\AttributeRepositoryInterface;
 use App\Admin\Repositories\AttributeVariation\AttributeVariationRepositoryInterface;
 use App\Admin\Repositories\Category\CategoryRepositoryInterface;
