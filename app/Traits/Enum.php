@@ -1,10 +1,11 @@
 <?php
 
-namespace App\Supports;
+namespace App\Traits;
 use Illuminate\Support\Facades\Lang;
 
 trait Enum
 {
+
 
 
 
