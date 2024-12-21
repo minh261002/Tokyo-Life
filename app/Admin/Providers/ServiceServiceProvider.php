@@ -18,6 +18,8 @@ class ServiceServiceProvider extends ServiceProvider
         'App\Admin\Services\Attribute\AttributeServiceInterface' => 'App\Admin\Services\Attribute\AttributeService',
         'App\Admin\Services\AttributeVariation\AttributeVariationServiceInterface' => 'App\Admin\Services\AttributeVariation\AttributeVariationService',
         'App\Admin\Services\Product\ProductServiceInterface' => 'App\Admin\Services\Product\ProductService',
+        'App\Admin\Services\Slider\SliderServiceInterface' => 'App\Admin\Services\Slider\SliderService',
+        'App\Admin\Services\Slider\SliderItemServiceInterface' => 'App\Admin\Services\Slider\SliderItemService',
     ];
     /**
      * Register any application services.
