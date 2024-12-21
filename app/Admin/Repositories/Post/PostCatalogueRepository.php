@@ -1,6 +1,7 @@
 <?php
 
 namespace App\Admin\Repositories\Post;
+use App\Enums\ActiveStatus;
 use App\Models\PostCatalogue;
 use App\Admin\Repositories\BaseRepository;
 
@@ -27,6 +28,7 @@ class PostCatalogueRepository extends BaseRepository implements PostCatalogueRep
     {
         $this->getQueryBuilderOrderBy('position', 'ASC');
         $this->instance = $this->instance->withDepth()
+            ->where('status', '!=', ActiveStatus::Deleted)
             ->get()
             ->toFlatTree();
         return $this->instance;
@@ -35,6 +37,7 @@ class PostCatalogueRepository extends BaseRepository implements PostCatalogueRep
     public function getFlatTreeBuilder()
     {
         $this->getQueryBuilderOrderBy('position', 'ASC');
+        $this->instance = $this->instance->where('status', '!=', ActiveStatus::Deleted);
         $this->instance = $this->instance->withDepth();
         return $this->instance;
     }

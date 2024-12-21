@@ -17,7 +17,7 @@ return new class extends Migration {
             $table->string('title');
             $table->string('slug')->unique();
             $table->text('image')->nullable();
-            $table->enum('feature', PostFeature::getValues())->default(PostFeature::None);
+            $table->enum('is_featured', PostFeature::getValues())->default(PostFeature::None);
             $table->enum('status', ActiveStatus::getValues())->default(ActiveStatus::Active);
             $table->longText('content')->nullable();
             $table->string('meta_title')->nullable();

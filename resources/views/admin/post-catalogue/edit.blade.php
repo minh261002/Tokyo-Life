@@ -166,11 +166,18 @@
                             <div class="card-body">
                                 <div class="form-group">
                                     <select class="form-select" name="status" id="status">
-                                        <option value="2" {{ $catalogue->status === 2 ? 'selected' : '' }}>Đang hoạt
+                                        {{-- <option value="2" {{ $catalogue->status === 2 ? 'selected' : '' }}>Đang hoạt
                                             động
                                         </option>
                                         <option value="1" {{ $catalogue->status === 1 ? 'selected' : '' }}>Không hoạt
-                                            động</option>
+                                            động</option> --}}
+
+                                        @foreach ($status as $key => $value)
+                                            <option value="{{ $key }}"
+                                                {{ $key == $catalogue->status ? 'selected' : '' }}>
+                                                {{ $value }}
+                                            </option>
+                                        @endforeach
                                     </select>
 
                                     @error('status')

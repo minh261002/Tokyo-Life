@@ -135,11 +135,8 @@
                             </h2>
                             <span>----</span>
                             <select name="product[type]" id="type" class="form-select w-25">
-                                <option value="1" {{ request()->type == 1 || !request()->type ? 'selected' : '' }}>Sản
-                                    phẩm
-                                    đơn giản</option>
-                                <option value="2" {{ request()->type == 2 ? 'selected' : '' }}>Sản phẩm có biến thể
-                                </option>
+                                <option value="1">Sản phẩm đơn giản</option>
+                                <option value="2">Sản phẩm có nhiều biến thể</option>
                             </select>
                         </div>
 
@@ -200,8 +197,12 @@
                         <div class="card-body">
                             <div class="form-group">
                                 <select name="product[status]" id="status" class="form-select">
-                                    <option value="1">Không hoạt động</option>
-                                    <option value="2">Đang hoạt động</option>
+                                    @foreach ($status as $key => $value)
+                                        <option value="{{ $key }}"
+                                            {{ old('product[status]') == $key ? 'selected' : '' }}>
+                                            {{ $value }}
+                                        </option>
+                                    @endforeach
                                 </select>
                                 @error('product[status]')
                                     <span class="text-danger">{{ $message }}</span>

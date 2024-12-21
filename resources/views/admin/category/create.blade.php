@@ -139,8 +139,11 @@
                             <div class="card-body">
                                 <div class="form-group">
                                     <select class="form-select" name="status" id="status">
-                                        <option value="2">Đang hoạt động</option>
-                                        <option value="1">Không hoạt động</option>
+                                        @foreach ($status as $key => $value)
+                                            <option value="{{ $key }}">
+                                                {{ $value }}
+                                            </option>
+                                        @endforeach
                                     </select>
                                 </div>
                             </div>
@@ -159,8 +162,11 @@
                                         Hiển thị trang chủ
                                     </label>
                                     <select class="form-select" name="show_home" id="show_home">
-                                        <option value="1">Không hiển thị</option>
-                                        <option value="2">Hiển thị</option>
+                                        @foreach ($showHomeStatus as $key => $value)
+                                            <option value="{{ $key }}">
+                                                {{ $value }}
+                                            </option>
+                                        @endforeach
                                     </select>
                                 </div>
 
@@ -169,8 +175,11 @@
                                         Hiển thị menu
                                     </label>
                                     <select class="form-select" name="show_menu" id="show_menu">
-                                        <option value="1">Không hiển thị</option>
-                                        <option value="2">Hiển thị</option>
+                                        @foreach ($showMenuStatus as $key => $value)
+                                            <option value="{{ $key }}">
+                                                {{ $value }}
+                                            </option>
+                                        @endforeach
                                     </select>
                                 </div>
                             </div>

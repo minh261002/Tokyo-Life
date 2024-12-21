@@ -4,6 +4,7 @@ namespace App\Admin\DataTables\Post;
 
 use App\Admin\DataTables\BaseDataTable;
 use App\Admin\Repositories\Post\PostCatalogueRepositoryInterface;
+use App\Enums\ActiveStatus;
 
 class PostCatalogueDataTable extends BaseDataTable
 {
@@ -36,10 +37,7 @@ class PostCatalogueDataTable extends BaseDataTable
         $this->columnSearchSelect = [
             [
                 'column' => 3,
-                'data' => [
-                    '1' => 'Không hoạt động',
-                    '2' => 'Đang hoạt động',
-                ]
+                'data' => ActiveStatus::asSelectArray(),
             ]
         ];
 

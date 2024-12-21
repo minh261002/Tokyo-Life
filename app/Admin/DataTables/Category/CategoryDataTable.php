@@ -4,6 +4,9 @@ namespace App\Admin\DataTables\Category;
 
 use App\Admin\DataTables\BaseDataTable;
 use App\Admin\Repositories\Category\CategoryRepositoryInterface;
+use App\Enums\ActiveStatus;
+use App\Enums\Category\ShowHomeStatus;
+use App\Enums\Category\ShowMenuStatus;
 
 class CategoryDataTable extends BaseDataTable
 {
@@ -40,24 +43,15 @@ class CategoryDataTable extends BaseDataTable
         $this->columnSearchSelect = [
             [
                 'column' => 4,
-                'data' => [
-                    '1' => 'Không hoạt động',
-                    '2' => 'Đang hoạt động',
-                ]
+                'data' => ActiveStatus::asSelectArray()
             ],
             [
                 'column' => 2,
-                'data' => [
-                    '1' => 'Không hiển thị',
-                    '2' => 'Hiển thị',
-                ]
+                'data' => ShowHomeStatus::asSelectArray(),
             ],
             [
                 'column' => 3,
-                'data' => [
-                    '1' => 'Không hiển thị',
-                    '2' => 'Hiển thị',
-                ]
+                'data' => ShowMenuStatus::asSelectArray()
             ],
         ];
 

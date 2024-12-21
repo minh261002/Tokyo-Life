@@ -25,7 +25,7 @@ return new class extends Migration {
             $table->string('email')->unique();
             $table->timestamp('email_verified_at')->nullable();
             $table->string('password');
-            $table->enum('staus', ActiveStatus::getValues())->default(ActiveStatus::Active);
+            $table->enum('status', ActiveStatus::getValues())->default(ActiveStatus::Active);
             $table->rememberToken();
             $table->timestamps();
         });

@@ -3,6 +3,7 @@
 namespace App\Admin\Http\Controllers\Post;
 
 use App\Admin\DataTables\Post\PostCatalogueDataTable;
+use App\Enums\ActiveStatus;
 use App\Http\Controllers\Controller;
 use App\Admin\Http\Requests\Post\PostCatalogueRequest;
 use App\Admin\Repositories\Post\PostCatalogueRepositoryInterface;
@@ -29,8 +30,9 @@ class PostCatalogueController extends Controller
 
     public function create()
     {
+        $status = ActiveStatus::asSelectArray();
         $catalogues = $this->repository->getFlatTree();
-        return view('admin.post-catalogue.create', compact('catalogues'));
+        return view('admin.post-catalogue.create', compact('catalogues', 'status'));
     }
 
 
@@ -44,7 +46,8 @@ class PostCatalogueController extends Controller
     {
         $post_catalogue = $this->repository->findOrFail($id);
         $catalogues = $this->repository->getFlatTree();
-        return view('admin.post-catalogue.edit', compact('post_catalogue', 'catalogues'));
+        $status = ActiveStatus::asSelectArray();
+        return view('admin.post-catalogue.edit', compact('post_catalogue', 'catalogues', 'status'));
     }
 
     public function update(PostCatalogueRequest $request)
@@ -62,8 +65,8 @@ class PostCatalogueController extends Controller
 
     public function delete(Request $request)
     {
-        $this->repository->delete($request->id);
-        return response()->json(['status' => 'success']);
+        $this->repository->updateAttribute($request->id, 'status', ActiveStatus::Deleted);
+        return response()->json(['status' => 'success', 'message' => 'Xóa chuyên mục bài viết thành công']);
     }
 
     public function get()

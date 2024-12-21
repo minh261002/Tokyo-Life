@@ -137,10 +137,8 @@
                             </h2>
                             <span>----</span>
                             <select name="product[type]" id="type" class="form-select w-25">
-                                <option value="1" {{ $product->type == 1 ? 'selected' : '' }}>Sản phẩm đơn giản
-                                </option>
-                                <option value="2" {{ $product->type == 2 ? 'selected' : '' }}>Sản phẩm có biến thể
-                                </option>
+                                <option value="1">Sản phẩm đơn giản</option>
+                                <option value="2">Sản phẩm có nhiều biến thể</option>
                             </select>
                         </div>
 
@@ -217,14 +215,12 @@
                         <div class="card-body">
                             <div class="form-group">
                                 <select name="product[status]" id="status" class="form-select">
-                                    <option value="1"
-                                        {{ old('product[status]', $product->status) == 1 ? 'selected' : '' }}>Không hoạt
-                                        động
-                                    </option>
-                                    <option value="2"
-                                        {{ old('product[status]', $product->status) == 2 ? 'selected' : '' }}>Đang hoạt
-                                        động
-                                    </option>
+                                    @foreach ($status as $key => $value)
+                                        <option value="{{ $key }}"
+                                            {{ $key == $product->status ? 'selected' : '' }}>
+                                            {{ $value }}
+                                        </option>
+                                    @endforeach
                                 </select>
                                 @error('product[status]')
                                     <span class="text-danger">{{ $message }}</span>

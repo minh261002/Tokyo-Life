@@ -4,6 +4,7 @@ namespace App\Admin\DataTables\Post;
 
 use App\Admin\DataTables\BaseDataTable;
 use App\Admin\Repositories\Post\PostRepositoryInterface;
+use App\Enums\ActiveStatus;
 
 class PostDataTable extends BaseDataTable
 {
@@ -27,7 +28,7 @@ class PostDataTable extends BaseDataTable
     }
     public function query()
     {
-        return $this->repository->getQueryBuilderOrderBy();
+        return $this->repository->getByQueryBuilder([['status', '!=', ActiveStatus::Deleted]]);
     }
 
     public function setColumnSearch(): void

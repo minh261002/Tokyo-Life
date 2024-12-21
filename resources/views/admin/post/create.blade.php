@@ -131,8 +131,9 @@
                                         Trạng thái
                                     </label>
                                     <select class="form-select" name="status" id="status">
-                                        <option value="2">Đang hoạt động</option>
-                                        <option value="1">Không hoạt động</option>
+                                        @foreach ($status as $key => $value)
+                                            <option value="{{ $key }}">{{ $value }}</option>
+                                        @endforeach
                                     </select>
 
                                     @error('status')
@@ -145,12 +146,9 @@
                                         Nổi bật
                                     </label>
                                     <select class="form-select" name="is_featured" id="is_featured">
-                                        <option value="1">
-                                            Bài viết không nổi bật
-                                        </option>
-                                        <option value="2">
-                                            Bài viết nổi bật
-                                        </option>
+                                        @foreach ($featured as $key => $value)
+                                            <option value="{{ $key }}">{{ $value }}</option>
+                                        @endforeach
                                     </select>
                                 </div>
                             </div>
