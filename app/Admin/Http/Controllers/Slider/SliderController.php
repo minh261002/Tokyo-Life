@@ -3,6 +3,7 @@
 namespace App\Admin\Http\Controllers\Slider;
 ;
 use App\Admin\DataTables\Slider\SliderDataTable;
+use App\Admin\DataTables\Slider\SliderItemDataTable;
 use App\Admin\Http\Requests\Slider\SliderItemRequest;
 use App\Admin\Http\Requests\Slider\SliderRequest;
 use App\Admin\Repositories\Slider\SliderItemRepositoryInterface;
@@ -35,9 +36,6 @@ class SliderController extends Controller
 
     public function index(SliderDataTable $dataTable)
     {
-        // $sliders = $this->sliderRepository->getQueryBuilderWithRelations()->get();
-
-        // return view('admin.slider.index', compact('sliders'));
         return $dataTable->render('admin.slider.index');
     }
 
@@ -79,15 +77,15 @@ class SliderController extends Controller
         return response()->json(['status' => 'success', 'message' => 'Xóa slider thành công']);
     }
 
-    public function indexItem($sliderId): View
+    public function indexItem(SliderItemDataTable $dataTable)
     {
-        $items = $this->sliderItemRepository->getQueryBuilderByColumns('slider_id', $sliderId)->get();
-        return view('admin.slider.item.index', compact('items', 'sliderId'));
+        return $dataTable->render('admin.slider.item.index');
     }
 
     public function createItem($sliderId): View
     {
-        return view('admin.slider.item.create', compact('sliderId'));
+        $slider = $this->sliderRepository->findOrFail($sliderId);
+        return view('admin.slider.item.create', compact('slider'));
     }
 
     public function storeItem(SliderItemRequest $request)
@@ -99,18 +97,19 @@ class SliderController extends Controller
     public function editItem($id): View
     {
         $item = $this->sliderItemRepository->findOrFail($id);
-        return view('admin.slider.item.edit', compact('item'));
+        $slider = $this->sliderRepository->findOrFail($item->slider_id);
+        return view('admin.slider.item.edit', compact('item', 'slider'));
     }
 
     public function updateItem(SliderItemRequest $request)
     {
         $this->sliderItemService->update($request);
-        return redirect()->back()->with('success', 'Cập nhật item thành công');
+        return redirect()->route('admin.slider.item.index', ['id' => $request->slider_id])->with('success', 'Cập nhật item thành công');
     }
 
     public function deleteItem($id)
     {
-        $this->sliderItemRepository->updateAttribute($id, 'status', ActiveStatus::Deleted);
+        $this->sliderItemRepository->delete($id);
         return response()->json(['status' => 'success', 'message' => 'Xóa item thành công']);
     }
 }

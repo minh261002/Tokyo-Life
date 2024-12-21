@@ -1,67 +1,74 @@
-@extends('admin.layouts.master')
+@extends('admin.layout.master')
 
-@section('title', 'Quản lý slider')
+@section('title', 'Quản lý slider item')
 
 @section('content')
-    <div class="card my-2">
-        <div class="card-body d-flex align-items-center justify-content-between">
-            <nav aria-label="breadcrumb">
-                <ol class="breadcrumb mb-0">
-                    <li class="breadcrumb-item"><a href="{{ route('admin.dashboard') }}">Dashboard</a></li>
-                    <li class="breadcrumb-item active" aria-current="page">Quản lý slider</li>
-                </ol>
-            </nav>
-        </div>
-    </div>
+    <div class="container-fluid">
+        <div class="page-header d-print-none">
+            <div class="card">
+                <div class="card-header d-flex align-items-center justify-content-between">
+                    <h3 class="card-title">
+                        Quản lý slider item
+                    </h3>
 
-    <div class="card">
-        <div class="card-header d-flex align-items-center justify-content-between">
-            <h2 class="card-title mb-0">
-                {{ \App\Models\Slider::where('id', $sliderId)->first()->name }}
-            </h2>
-
-            <div class="card-tools">
-                <a href="{{ route('admin.slider.item.create', $sliderId) }}" class="btn btn-primary">
-                    <i class="mdi mdi-plus"></i> Thêm mới
-                </a>
+                    <nav aria-label="breadcrumb">
+                        <ol class="breadcrumb">
+                            <li class="breadcrumb-item">
+                                <a href="{{ route('admin.dashboard') }}">
+                                    <i class="bi bi-house"></i>
+                                    Dashboard
+                                </a>
+                            </li>
+                            <li class="breadcrumb-item active" aria-current="page">
+                                Quản lý slider item
+                            </li>
+                        </ol>
+                    </nav>
+                </div>
             </div>
         </div>
 
-        <div class="card-body">
-            <table class="table table-striped table-bordered" id="table">
-                <thead>
-                    <tr>
-                        <th>Ảnh</th>
-                        <th>Tiêu đề</th>
-                        <th>Đường dẫn</th>
-                        <th>Thứ tự</th>
-                        <th>Thao tác</th>
-                    </tr>
-                </thead>
+        <!-- Page body -->
+        <div class="page-body">
+            <div class="card">
+                <div>
+                    <div class="card-header">
+                        <h3 class="card-title">
+                            Danh sách slider item
+                        </h3>
+                        <div class="card-actions">
+                            <a href="{{ route('admin.slider.item.create', request()->route('id')) }}"
+                                class="btn btn-primary">
+                                <i class="ti ti-plus fs-4 me-1"></i>
+                                Thêm mới
+                            </a>
+                        </div>
+                    </div>
+                </div>
 
-                <tbody>
-                    @foreach ($items as $item)
-                        <tr>
-                            <td style="width:70px">
-                                <img src="{{ asset($item->image) }}" alt="{{ $item->title }}" class="custom-img-table">
-                            </td>
-                            <td>{{ $item->title }}</td>
-                            <td>{{ $item->link }}</td>
-                            <td>{{ $item->position }}</td>
-                            <td>
-                                <a href="{{ route('admin.slider.item.edit', $item->id) }}" class="btn btn-sm btn-primary">
-                                    <i data-feather="edit"></i>
-                                </a>
 
-                                <a href="{{ route('admin.slider.item.delete', $item->id) }}"
-                                    class="btn btn-sm btn-danger delete-item">
-                                    <i data-feather="trash"></i>
-                                </a>
-                            </td>
-                        </tr>
-                    @endforeach
-                </tbody>
-            </table>
+                <div class="card-body">
+                    <div class="table-responsive">
+                        @include('admin.layout.partials.toggle-column')
+                        {{ $dataTable->table(['class' => 'table table-bordered table-striped'], true) }}
+                    </div>
+                </div>
+            </div>
         </div>
     </div>
 @endsection
+
+@push('libs-js')
+    <script src="{{ asset('admin/js/buttons.server-side.js') }}"></script>
+@endpush
+
+
+@push('scripts')
+    {{ $dataTable->scripts() }}
+
+    @include('admin.layout.partials.scripts', [
+        'id_table' => $dataTable->getTableAttribute('id'),
+    ])
+
+    <script></script>
+@endpush
