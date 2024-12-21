@@ -2,6 +2,7 @@
 
 namespace App\Admin\Repositories\Category;
 
+use App\Enums\ActiveStatus;
 use App\Models\Category;
 use App\Admin\Repositories\BaseRepository;
 
@@ -27,6 +28,7 @@ class CategoryRepository extends BaseRepository implements CategoryRepositoryInt
     {
         $this->getQueryBuilderOrderBy('position', 'ASC');
         $this->instance = $this->instance->withDepth()
+            ->where('status', '!=', ActiveStatus::Deleted)
             ->get()
             ->toFlatTree();
         return $this->instance;
@@ -35,6 +37,7 @@ class CategoryRepository extends BaseRepository implements CategoryRepositoryInt
     public function getFlatTreeBuilder()
     {
         $this->getQueryBuilderOrderBy('position', 'ASC');
+        $this->instance = $this->instance->where('status', '!=', ActiveStatus::Deleted);
         $this->instance = $this->instance->withDepth();
         return $this->instance;
     }

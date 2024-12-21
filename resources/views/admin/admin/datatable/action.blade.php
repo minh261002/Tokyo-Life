@@ -19,8 +19,7 @@
                         Cảnh báo
                     </h3>
                     <div class="text-secondary">
-                        Dũ liệu sẽ bị xóa vĩnh viễn khỏi hệ thống và không thể khôi
-                        phục. Bạn có chắc muốn xóa?
+                        Thao tác sẽ chuyển trạng thái của tài khoản này thành "Đã xóa". Bạn muốn tiếp tục?
                     </div>
                 </div>
                 <div class="modal-footer">

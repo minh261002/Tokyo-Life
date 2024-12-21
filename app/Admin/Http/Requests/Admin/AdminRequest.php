@@ -21,6 +21,7 @@ class AdminRequest extends BaseRequest
             'birthday' => 'nullable',
             'image' => 'nullable',
             'description' => 'nullable',
+            'status' => 'nullable',
         ];
     }
 
@@ -40,6 +41,7 @@ class AdminRequest extends BaseRequest
             'image' => 'nullable',
             'description' => 'nullable',
             'password' => 'nullable|min:6|confirmed',
+            'status' => 'nullable',
         ];
     }
 

@@ -5,6 +5,7 @@ namespace App\Admin\Http\Controllers\Module;
 use App\Admin\DataTables\Module\ModuleDataTable;
 use App\Admin\Repositories\Module\ModuleRepositoryInterface;
 use App\Admin\Services\Module\ModuleServiceInterface;
+use App\Enums\Module\ModuleStatus;
 use App\Http\Controllers\Controller;
 use App\Admin\Http\Requests\Module\ModuleRequest;
 
@@ -28,7 +29,8 @@ class ModuleController extends Controller
 
     public function create()
     {
-        return view('admin.module.create');
+        $status = ModuleStatus::asSelectArray();
+        return view('admin.module.create', compact('status'));
     }
 
     public function store(ModuleRequest $request)
@@ -39,8 +41,9 @@ class ModuleController extends Controller
 
     public function edit(int $id)
     {
+        $status = ModuleStatus::asSelectArray();
         $module = $this->repository->findOrFail($id);
-        return view('admin.module.edit', compact('module'));
+        return view('admin.module.edit', compact('module', 'status'));
     }
 
     public function update(ModuleRequest $request)

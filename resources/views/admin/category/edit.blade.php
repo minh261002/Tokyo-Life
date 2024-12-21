@@ -141,11 +141,12 @@
                             <div class="card-body">
                                 <div class="form-group">
                                     <select class="form-select" name="status" id="status">
-                                        <option value="2" {{ $category->status === 2 ? 'selected' : '' }}>Đang hoạt
-                                            động
-                                        </option>
-                                        <option value="1" {{ $category->status === 1 ? 'selected' : '' }}>Không hoạt
-                                            động</option>
+                                        @foreach ($status as $key => $value)
+                                            <option value="{{ $key }}"
+                                                {{ $category->status == $key ? 'selected' : '' }}>
+                                                {{ $value }}
+                                            </option>
+                                        @endforeach
                                     </select>
                                 </div>
                             </div>
@@ -163,10 +164,12 @@
                                         Hiển thị trong trang chủ
                                     </label>
                                     <select class="form-select" name="show_home" id="show_home">
-                                        <option value="1" {{ $category->show_home === 1 ? 'selected' : '' }}>Không
-                                            hiển thị</option>
-                                        <option value="2" {{ $category->show_home === 2 ? 'selected' : '' }}>Hiển
-                                            thị</option>
+                                        @foreach ($showHomeStatus as $key => $value)
+                                            <option value="{{ $key }}"
+                                                {{ $category->show_home == $key ? 'selected' : '' }}>
+                                                {{ $value }}
+                                            </option>
+                                        @endforeach
                                     </select>
                                 </div>
 
@@ -175,11 +178,12 @@
                                         Hiển thị trong menu
                                     </label>
                                     <select class="form-select" name="show_menu" id="show_menu">
-                                        <option value="1" {{ $category->show_menu === 1 ? 'selected' : '' }}>Không
-                                            hiển thị</option>
-                                        <option value="2" {{ $category->show_menu === 2 ? 'selected' : '' }}>
-                                            Hiển thị
-                                        </option>
+                                        @foreach ($showMenuStatus as $key => $value)
+                                            <option value="{{ $key }}"
+                                                {{ $category->show_menu == $key ? 'selected' : '' }}>
+                                                {{ $value }}
+                                            </option>
+                                        @endforeach
                                     </select>
                                 </div>
                             </div>

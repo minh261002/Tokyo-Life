@@ -80,8 +80,11 @@
                             <div class="card-body">
                                 <div class="form-group">
                                     <select class="form-select" name="status" id="status">
-                                        <option value="1">Chưa hoàn thành</option>
-                                        <option value="2">Đã hoàn thành</option>
+                                        @foreach ($status as $key => $value)
+                                            <option value="{{ $key }}">
+                                                {{ $value }}
+                                            </option>
+                                        @endforeach
                                     </select>
                                 </div>
                             </div>

@@ -4,6 +4,7 @@ namespace App\Admin\DataTables\Customer;
 
 use App\Admin\DataTables\BaseDataTable;
 use App\Admin\Repositories\Customer\CustomerRepositoryInterface;
+use App\Enums\ActiveStatus;
 
 class CustomerDataTable extends BaseDataTable
 {
@@ -29,7 +30,9 @@ class CustomerDataTable extends BaseDataTable
     public function query()
     {
         return $this->repository->getByQueryBuilder(
-            ['role' => 'user']
+            [
+                ['status', '!=', ActiveStatus::Deleted]
+            ]
         );
     }
 
@@ -40,10 +43,7 @@ class CustomerDataTable extends BaseDataTable
         $this->columnSearchSelect = [
             [
                 'column' => 2,
-                'data' => [
-                    '1' => 'Tạm khoá',
-                    '2' => 'Đang hoạt động',
-                ]
+                'data' => ActiveStatus::asSelectArray()
             ],
         ];
 

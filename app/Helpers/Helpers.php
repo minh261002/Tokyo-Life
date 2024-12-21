@@ -97,3 +97,9 @@ function formatUTCDateTime($time)
     $timeUTC->setTimezone(new DateTimeZone('Asia/Ho_Chi_Minh'));
     return $timeUTC->format('Y-m-d H:i');
 }
+
+function formatImageUrl($url)
+{
+    $path = env('APP_URL');
+    return $path . $url;
+}

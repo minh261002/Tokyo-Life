@@ -11,6 +11,7 @@ use App\Admin\Repositories\AttributeVariation\AttributeVariationRepositoryInterf
 use App\Admin\Repositories\Category\CategoryRepositoryInterface;
 use App\Admin\Repositories\Product\ProductRepositoryInterface;
 use App\Admin\Services\Product\ProductServiceInterface;
+use App\Enums\ActiveStatus;
 use App\Http\Controllers\Controller;
 use Illuminate\Contracts\View\View;
 use Illuminate\Http\Request;
@@ -45,19 +46,21 @@ class ProductController extends Controller
 
     public function create(): View
     {
+        $status = ActiveStatus::asSelectArray();
         $categories = $this->categoryRepository->getFlatTree();
         $attributes = $this->attributeRepository->getAllPluckById();
-        return view('admin.product.create', compact('categories', 'attributes', ));
+        return view('admin.product.create', compact('categories', 'attributes', 'status'));
     }
 
     public function store(ProductStoreRequest $request)
     {
         $this->productService->store($request);
-        return redirect()->route('admin.product.index');
+        return redirect()->route('admin.product.index')->with('success', 'Thêm sản phẩm thành công');
     }
 
     public function edit($id, Request $request): View
     {
+        $status = ActiveStatus::asSelectArray();
         $product = $this->productRepository->loadRelations($this->productRepository->findOrFail($id), [
             'categories:id',
             'productAttributes' => function ($query) {
@@ -78,6 +81,7 @@ class ProductController extends Controller
                 'product' => $product,
                 'categories' => $categories,
                 'attributes' => $attributes,
+                'status' => $status
             ]
         );
     }
@@ -85,7 +89,7 @@ class ProductController extends Controller
     public function update(ProductUpdateRequest $request)
     {
         $this->productService->update($request);
-        return redirect()->back()->with('success', 'Cập nhật sản phẩm thành công');
+        return redirect()->route('admin.product.index')->with('success', 'Cập nhật sản phẩm thành công');
     }
 
     public function updateStatus(Request $request)

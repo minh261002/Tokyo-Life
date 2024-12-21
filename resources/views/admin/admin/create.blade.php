@@ -170,8 +170,24 @@
                             </div>
                             <div class="card-body">
                                 <select name="role_id" id="role_id" class="form-control select2">
+                                    <option value="">Chọn vai trò</option>
                                     @foreach ($roles as $role)
                                         <option value="{{ $role->id }}">{{ $role->title }}</option>
+                                    @endforeach
+                                </select>
+                            </div>
+                        </div>
+
+                        <div class="card mt-3">
+                            <div class="card-header d-flex align-items-center justify-content-between">
+                                <h2 class="card-title mb-0">Trạng thái</h2>
+                            </div>
+                            <div class="card-body">
+                                <select class="form-select" name="status" id="status">
+                                    @foreach ($status as $key => $value)
+                                        <option value="{{ $key }}">
+                                            {{ $value }}
+                                        </option>
                                     @endforeach
                                 </select>
                             </div>

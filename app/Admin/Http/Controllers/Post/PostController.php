@@ -3,6 +3,8 @@
 namespace App\Admin\Http\Controllers\Post;
 
 use App\Admin\DataTables\Post\PostDataTable;
+use App\Enums\ActiveStatus;
+use App\Enums\Post\PostFeature;
 use App\Http\Controllers\Controller;
 use App\Admin\Http\Requests\Post\PostRequest;
 use App\Admin\Repositories\Post\PostCatalogueRepositoryInterface;
@@ -33,8 +35,10 @@ class PostController extends Controller
 
     public function create()
     {
+        $status = ActiveStatus::asSelectArray();
         $postCatalogues = $this->postCatalogueRepository->getFlatTree();
-        return view('admin.post.create', compact('postCatalogues'));
+        $featured = PostFeature::asSelectArray();
+        return view('admin.post.create', compact('postCatalogues', 'status', 'featured'));
     }
 
     public function store(PostRequest $request)
@@ -45,9 +49,11 @@ class PostController extends Controller
 
     public function edit($id)
     {
+        $status = ActiveStatus::asSelectArray();
+        $featured = PostFeature::asSelectArray();
         $post = $this->repository->find($id);
         $postCatalogues = $this->postCatalogueRepository->getFlatTree();
-        return view('admin.post.edit', compact('post', 'postCatalogues'));
+        return view('admin.post.edit', compact('post', 'postCatalogues', 'status', 'featured'));
     }
 
     public function update(PostRequest $request)
@@ -65,7 +71,7 @@ class PostController extends Controller
 
     public function delete($id)
     {
-        $this->repository->delete($id);
+        $this->repository->updateAttribute($id, 'status', ActiveStatus::Deleted);
         return response()->json(['status' => 'success', 'message' => 'Xóa bài viết thành công']);
     }
 }

@@ -4,6 +4,7 @@ namespace App\Admin\DataTables\Module;
 
 use App\Admin\DataTables\BaseDataTable;
 use App\Admin\Repositories\Module\ModuleRepositoryInterface;
+use App\Enums\Module\ModuleStatus;
 
 class ModuleDataTable extends BaseDataTable
 {
@@ -37,10 +38,7 @@ class ModuleDataTable extends BaseDataTable
         $this->columnSearchSelect = [
             [
                 'column' => 2,
-                'data' => [
-                    '1' => 'Chưa hoàn thành',
-                    '2' => 'Đã hoàn thành',
-                ]
+                'data' =>ModuleStatus::asSelectArray()
             ]
         ];
 

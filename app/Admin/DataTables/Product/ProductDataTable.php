@@ -4,6 +4,7 @@ namespace App\Admin\DataTables\Product;
 
 use App\Admin\DataTables\BaseDataTable;
 use App\Admin\Repositories\Product\ProductRepositoryInterface;
+use App\Enums\ActiveStatus;
 
 class ProductDataTable extends BaseDataTable
 {
@@ -26,7 +27,7 @@ class ProductDataTable extends BaseDataTable
     }
     public function query()
     {
-        return $this->repository->getQueryBuilderOrderBy();
+        return $this->repository->getByQueryBuilder([['status', '!=', ActiveStatus::Deleted]]);
     }
 
     public function setColumnSearch(): void
@@ -36,10 +37,7 @@ class ProductDataTable extends BaseDataTable
         $this->columnSearchSelect = [
             [
                 'column' => 3,
-                'data' => [
-                    '1' => 'Không hoạt động',
-                    '2' => 'Hoạt động',
-                ]
+                'data' => ActiveStatus::asSelectArray()
             ]
         ];
 

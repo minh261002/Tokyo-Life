@@ -516,6 +516,13 @@ return [
             'printable' => true,
             'addClass' => 'text-center align-middle'
         ],
+        'status' => [
+            'title' => 'Trạng thái',
+            'orderable' => true,
+            'exportable' => true,
+            'printable' => true,
+            'addClass' => 'text-center align-middle'
+        ],
         'action' => [
             'title' => 'Thao tác',
             'orderable' => false,

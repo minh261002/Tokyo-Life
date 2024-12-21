@@ -3,6 +3,9 @@
 namespace App\Admin\Http\Controllers\Category;
 
 use App\Admin\DataTables\Category\CategoryDataTable;
+use App\Enums\ActiveStatus;
+use App\Enums\Category\ShowHomeStatus;
+use App\Enums\Category\ShowMenuStatus;
 use App\Http\Controllers\Controller;
 use App\Admin\Http\Requests\Category\CategoryRequest;
 use App\Admin\Repositories\Category\CategoryRepositoryInterface;
@@ -29,8 +32,11 @@ class CategoryController extends Controller
 
     public function create()
     {
+        $status = ActiveStatus::asSelectArray();
+        $showHomeStatus = ShowHomeStatus::asSelectArray();
+        $showMenuStatus = ShowMenuStatus::asSelectArray();
         $categories = $this->repository->getFlatTree();
-        return view('admin.category.create', compact('categories'));
+        return view('admin.category.create', compact('categories', 'status', 'showHomeStatus', 'showMenuStatus'));
     }
 
     public function store(CategoryRequest $request)
@@ -43,7 +49,10 @@ class CategoryController extends Controller
     {
         $category = $this->repository->find($id);
         $categories = $this->repository->getFlatTree();
-        return view('admin.category.edit', compact('category', 'categories'));
+        $status = ActiveStatus::asSelectArray();
+        $showHomeStatus = ShowHomeStatus::asSelectArray();
+        $showMenuStatus = ShowMenuStatus::asSelectArray();
+        return view('admin.category.edit', compact('category', 'categories', 'status', 'showHomeStatus', 'showMenuStatus'));
     }
 
     public function update(CategoryRequest $request)
@@ -57,12 +66,12 @@ class CategoryController extends Controller
         $data = $request->only('id', 'status');
 
         $this->repository->update($data['id'], $data);
-        return response()->json(['status' => 'success', 'message' => 'Cập nhật trạng thái slider thành công']);
+        return response()->json(['status' => 'success', 'message' => 'Cập nhật trạng thái danh mục thành công']);
     }
 
     public function delete($id)
     {
-        $this->repository->delete($id);
+        $this->repository->updateAttribute($id, 'status', ActiveStatus::Deleted);
         return response()->json([
             'status' => 'success',
             'message' => 'Xóa danh mục thành công'
