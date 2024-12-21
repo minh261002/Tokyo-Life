@@ -17,7 +17,8 @@ enum PaymentStatus: int
     public function badge(): string
     {
         return match ($this) {
-
+            PaymentStatus::Pending => 'bg-red text-red-fg',
+            PaymentStatus::Paid => 'bg-green text-green-fg',
         };
     }
 }

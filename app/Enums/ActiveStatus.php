@@ -17,7 +17,9 @@ enum ActiveStatus: int
     public function badge(): string
     {
         return match ($this) {
-
+            ActiveStatus::Active => 'bg-green text-green-fg',
+            ActiveStatus::Inactive => 'bg-red text-red-fg',
+            ActiveStatus::Deleted => 'bg-gray text-gray-fg',
         };
     }
 }

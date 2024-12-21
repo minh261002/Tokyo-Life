@@ -1,5 +1,6 @@
 <?php
 
+use App\Enums\ActiveStatus;
 use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
@@ -19,7 +20,7 @@ return new class extends Migration {
             $table->integer('sale_price')->nullable();
             $table->string('sku')->unique();
             $table->integer('qty')->nullable();
-            $table->tinyInteger('status')->default(1); //1: active, 2: inactive
+            $table->enum('status', ActiveStatus::getValues())->default(ActiveStatus::Active);
             $table->text('desc')->nullable();
             $table->string('image')->nullable();
             $table->longText('gallery')->nullable();

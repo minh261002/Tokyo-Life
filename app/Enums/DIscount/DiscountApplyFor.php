@@ -16,7 +16,8 @@ enum DiscountApplyFor: int
     public function badge(): string
     {
         return match ($this) {
-
+            DiscountApplyFor::One => 'bg-green text-green-fg',
+            DiscountApplyFor::All => 'bg-red text-red-fg',
         };
     }
 }

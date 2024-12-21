@@ -9,6 +9,7 @@ trait Enum
 
 
 
+
     public static function getCases(): array
     {
         return array_column(self::cases(), 'name');
@@ -32,6 +33,7 @@ trait Enum
     {
         return 'enums.' . static::class;
     }
+
 
     protected static function getLocalizedDescription(mixed $value): ?string
     {

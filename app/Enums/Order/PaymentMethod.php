@@ -17,7 +17,8 @@ enum PaymentMethod: int
     public function badge(): string
     {
         return match ($this) {
-
+            PaymentMethod::Cash => 'bg-green text-green-fg',
+            PaymentMethod::QrCode => 'bg-red text-red-fg',
         };
     }
 }

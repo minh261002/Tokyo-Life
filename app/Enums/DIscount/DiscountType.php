@@ -16,7 +16,8 @@ enum DiscountType: int
     public function badge(): string
     {
         return match ($this) {
-
+            DiscountType::Percentage => 'bg-green text-green-fg',
+            DiscountType::Fixed => 'bg-red text-red-fg',
         };
     }
 }

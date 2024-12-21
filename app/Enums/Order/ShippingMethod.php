@@ -16,7 +16,8 @@ enum ShippingMethod: int
     public function badge(): string
     {
         return match ($this) {
-
+            ShippingMethod::GHTK => 'bg-green text-green-fg',
+            ShippingMethod::VNPost => 'bg-red text-red-fg',
         };
     }
 }
