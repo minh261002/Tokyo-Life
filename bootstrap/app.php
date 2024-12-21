@@ -10,6 +10,7 @@ return Application::configure(basePath: dirname(__DIR__))
             __DIR__ . '/../routes/web.php',
             __DIR__ . '/../routes/admin.php',
         ],
+        api: __DIR__ . '/../routes/api/v1.php',
         commands: __DIR__ . '/../routes/console.php',
         health: '/up',
     )
@@ -18,6 +19,7 @@ return Application::configure(basePath: dirname(__DIR__))
             'auth' => \App\Http\Middleware\CustomAuthMiddleware::class,
             'admin' => \App\Http\Middleware\AdminLoginMiddleware::class,
             'permission' => \Spatie\Permission\Middleware\PermissionMiddleware::class,
+            'jwt' => \App\Http\Middleware\Jwt::class,
         ]);
     })
     ->withExceptions(function (Exceptions $exceptions) {

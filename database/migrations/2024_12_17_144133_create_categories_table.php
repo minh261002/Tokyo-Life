@@ -1,5 +1,6 @@
 <?php
 
+use App\Enums\ActiveStatus;
 use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
@@ -19,7 +20,7 @@ return new class extends Migration {
             $table->string('slug');
             $table->text('image')->nullable();
             $table->integer('position')->default(0);
-            $table->tinyInteger('status')->default(1);
+            $table->enum('status', ActiveStatus::getValues())->default(ActiveStatus::Active);
             $table->tinyInteger('show_menu')->default(1);
             $table->tinyInteger('show_home')->default(1);
             $table->text('desc')->nullable();

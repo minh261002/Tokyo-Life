@@ -1,22 +1,19 @@
 <?php
 
-namespace App\Enums\Discount;
+namespace App\Enums\Module;
 
 use App\Traits\Enum;
 
-
-
-enum DiscountApplyFor: int
+enum ModuleStatus: int
 {
     use Enum;
 
-    case One = 1;
-    case All = 2;
+    case Completed = 2;
+    case InProgress = 1;
 
     public function badge(): string
     {
         return match ($this) {
-
         };
     }
 }
