@@ -3,6 +3,7 @@
 namespace App\Admin\Http\Controllers\Admin;
 
 use App\Admin\DataTables\Admin\AdminDataTable;
+use App\Enums\ActiveStatus;
 use App\Http\Controllers\Controller;
 use App\Admin\Http\Requests\Admin\AdminRequest;
 use App\Models\Province;
@@ -35,7 +36,8 @@ class AdminController extends Controller
     {
         $roles = $this->roleRepository->getOrderBy('id', 'desc');
         $provinces = Province::all();
-        return view('admin.admin.create', compact('roles', 'provinces'));
+        $status = ActiveStatus::asSelectArray();
+        return view('admin.admin.create', compact('roles', 'provinces', 'status'));
     }
 
     public function store(AdminRequest $request)
@@ -50,7 +52,8 @@ class AdminController extends Controller
         $admin = $this->repository->findOrFail($id);
         $roles = $this->roleRepository->getOrderBy('id', 'desc');
         $provinces = Province::all();
-        return view('admin.admin.edit', compact('admin', 'roles', 'provinces'));
+        $status = ActiveStatus::asSelectArray();
+        return view('admin.admin.edit', compact('admin', 'roles', 'provinces', 'status'));
     }
 
     public function update(AdminRequest $request)
@@ -61,10 +64,7 @@ class AdminController extends Controller
 
     public function delete($id)
     {
-        $admin = $this->repository->findOrFail($id);
-        $admin->roles()->detach();
-        $admin->delete();
-
+        $this->repository->updateAttribute($id, 'status', ActiveStatus::Deleted);
         return response()->json(['status' => 'success', 'message' => 'Xóa quản trị viên thành công']);
     }
 }

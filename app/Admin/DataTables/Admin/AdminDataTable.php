@@ -4,6 +4,7 @@ namespace App\Admin\DataTables\Admin;
 
 use App\Admin\DataTables\BaseDataTable;
 use App\Admin\Repositories\Admin\AdminRepositoryInterface;
+use App\Enums\ActiveStatus;
 
 class AdminDataTable extends BaseDataTable
 {
@@ -22,16 +23,26 @@ class AdminDataTable extends BaseDataTable
         $this->view = [
             'action' => 'admin.admin.datatable.action',
             'image' => 'admin.admin.datatable.image',
+            'status' => 'admin.admin.datatable.status',
         ];
     }
+
     public function query()
     {
-        return $this->repository->getByQueryBuilder([], ['roles']);
+        return $this->repository->getByQueryBuilder([
+            ['status', '!=', ActiveStatus::Deleted]
+        ], ['roles']);
     }
 
     public function setColumnSearch(): void
     {
-        $this->columnAllSearch = [1, 2, 3];
+        $this->columnAllSearch = [1, 2, 3, 4];
+        $this->columnSearchSelect = [
+            [
+                'column' => 4,
+                'data' => ActiveStatus::asSelectArray()
+            ]
+        ];
     }
 
     protected function setCustomColumns(): void
@@ -47,7 +58,8 @@ class AdminDataTable extends BaseDataTable
             'role' => function ($admin) {
                 $roles = $admin->roles->pluck('name')->toArray();
                 return '<code>' . implode(', ', $roles) . '</code>';
-            }
+            },
+            'status' => $this->view['status'],
         ];
     }
 
@@ -64,6 +76,7 @@ class AdminDataTable extends BaseDataTable
             'action',
             'image',
             'role',
+            'status',
         ];
     }
 
