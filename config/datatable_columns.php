@@ -414,6 +414,13 @@ return [
             'printable' => true,
             'addClass' => 'text-center align-middle',
         ],
+        'key' => [
+            'title' => 'Key',
+            'orderable' => true,
+            'exportable' => true,
+            'printable' => true,
+            'addClass' => 'text-center align-middle',
+        ],
         'desc' => [
             'title' => 'Mô tả',
             'orderable' => true,

@@ -89,9 +89,9 @@ class SliderController extends Controller
     /**
      * Chi tiết slider
      *
-     * Api này trả về chi tiết slider theo id
+     * Api này trả về chi tiết slider theo key
      *
-     * @urlParam id integer required Id của slider
+     * @urlParam key integer required key của slider
      *
      * @Response {
      *"status": 200,
@@ -136,11 +136,10 @@ class SliderController extends Controller
      * @return \Illuminate\Http\JsonResponse
      */
 
-    public function show($id)
+    public function show($key)
     {
         try {
-            $slider = $this->repository->findOrFail($id);
-
+            $slider = $this->repository->getByQueryBuilder(['key' => $key], ['items'])->first();
             return response()->json([
                 'status' => 200,
                 'data' => new SliderResource($slider)

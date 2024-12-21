@@ -31,7 +31,7 @@ Route::group([
 
     Route::prefix('sliders')->group(function () {
         Route::get('/', [SliderController::class, 'index']);
-        Route::get('/{id}', [SliderController::class, 'show']);
+        Route::get('/{key}', [SliderController::class, 'show']);
     });
 
 

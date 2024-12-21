@@ -32,11 +32,11 @@ class SliderDataTable extends BaseDataTable
     public function setColumnSearch(): void
     {
 
-        $this->columnAllSearch = [0, 1, 2];
+        $this->columnAllSearch = [0, 1, 2, 3];
 
         $this->columnSearchSelect = [
             [
-                'column' => 2,
+                'column' => 3,
                 'data' => ActiveStatus::asSelectArray()
             ]
         ];
